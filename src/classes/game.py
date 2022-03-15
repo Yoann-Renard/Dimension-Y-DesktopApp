@@ -1,17 +1,24 @@
 import os
+import requests
+import json
+
+from settings import GET_HEROES_FROM_USER_ENDPOINT, HEROES_SERVICE_PORT, HOST
 
 class Game:
-    run_state = True
+    running_state = True
     clock = None
-    active_window = "main"
+    active_window = "welcome"
     user_info = {
-        "user_name": ""
+        "username": ""
     }
+    heroes = []
 
     def __init__(self, clock) -> None:
         self.clock = clock
-        self.user_info["user_name"] = self._getUserName()
+        self.user_info["username"] = self._getUserName()
         self._requestUserInfo()
+        # TODO PARSE USER INFO
+        self._requestHeroes()
 
         # TODO GET HEROES
 
@@ -21,14 +28,27 @@ class Game:
     def _getUserName(self) -> str:
         result: str = ""
         try:
-            with open(os.path.join("cache", "user_cache.json")) as f:
-                json = json.load(f)
-                result = json["user_name"]
-                del json, f
-        except:
-            print("User Name cannot be loaded from cache.")
+            with open(os.path.join("cache", "user_cache.json"),"r") as f:
+                json_file = json.load(f)
+                result = json_file["username"]
+                print("User Name loaded from cache: " + result)
+                del json_file, f
+        except Exception as e:
+            print("Username cannot be loaded from cache.\n"+e )
             # TODO GET USERNAME
         return result
 
     def _requestUserInfo(self) -> None:
         pass  # TODO
+    
+    def _requestHeroes(self) -> None:
+        result = requests.get(url=HOST+HEROES_SERVICE_PORT+self.user_info["username"]+GET_HEROES_FROM_USER_ENDPOINT, timeout=5)
+        list = json.loads(result.text)["heroes"]
+        print("HEROES REQUEST RESPONSE: "+ str(result.status_code) + "\nRESULT LENGTH: "+str(len(list)))
+        self.heroes = list
+
+    def _saveHeroesImagesInCache(self) -> None:
+        pass
+
+    def _saveUserInfoInCache(self) -> None:
+        pass
