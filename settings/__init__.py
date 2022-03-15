@@ -4,7 +4,7 @@ from pygame import display
 ##
 ###
 #### WINDOW #### WINDOW ####
-WIN_WIDTH = 1200
+WIN_WIDTH = 1300
 WIN_HEIGHT = 800
 
 CAPTION = "Dimension Y"
