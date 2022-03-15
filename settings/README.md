@@ -1,0 +1,1 @@
+# Every constant variables used by the game

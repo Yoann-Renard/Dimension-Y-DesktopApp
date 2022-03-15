@@ -1,0 +1,1 @@
+# Auto generated cache to store images and other dynamic ressources
