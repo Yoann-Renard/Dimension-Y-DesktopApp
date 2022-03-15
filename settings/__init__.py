@@ -18,6 +18,15 @@ FPS = 60
 #
 ##
 ###
+#### REQUEST #### REQUEST
+HOST = "http://192.168.0.16"
+HEROES_SERVICE_PORT = ":9990/"
+GET_HEROES_FROM_USER_ENDPOINT = "/get_heroes"
+
+
+#
+##
+###
 #### SETUP #### SETUP ####
 WIN = display.set_mode((WIN_WIDTH, WIN_HEIGHT))
 display.set_caption(CAPTION)
