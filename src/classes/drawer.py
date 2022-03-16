@@ -14,8 +14,8 @@ class Drawer:
         window.blit(PRESS_ANY_KEY, ( WIN_WIDTH//2 - PRESS_ANY_KEY.get_width()//2, WIN_HEIGHT//2 + 50))
     
     input_text_active = False
-    def draw_login(self) -> None:
-        pass
+    def draw_login(self, window) -> None:
+        window.fill((150,0,0))
     
-    def draw_main(self) -> None:
-        pass
+    def draw_main(self, window) -> None:
+        window.fill((150,150,150))

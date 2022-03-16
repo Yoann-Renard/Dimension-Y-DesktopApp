@@ -27,14 +27,12 @@ if "__main__" == __name__:
 
 
         if game.active_window == "main":
-            print("main")
-            drawer.draw_main()
+            drawer.draw_main(WIN)
         elif game.active_window == "welcome":
             drawer.draw_welcome(WIN, pygame.time.get_ticks())
             eventHandler.welcome_event_handler(events, game, pygame.KEYDOWN)
         elif game.active_window == "login":
-            print("login")
             eventHandler.login_event_handler(events, drawer, pygame.MOUSEBUTTONDOWN)
-            drawer.draw_login()
+            drawer.draw_login(WIN)
         
         pygame.display.update()
