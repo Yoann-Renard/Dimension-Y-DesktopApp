@@ -13,6 +13,7 @@ class Drawer:
         window.blit(INTRO_TEXT, ( WIN_WIDTH//2 - INTRO_TEXT.get_width()//2, WIN_HEIGHT//2 - INTRO_TEXT.get_height()))
         window.blit(PRESS_ANY_KEY, ( WIN_WIDTH//2 - PRESS_ANY_KEY.get_width()//2, WIN_HEIGHT//2 + 50))
     
+    input_text_active = False
     def draw_login(self) -> None:
         pass
     
