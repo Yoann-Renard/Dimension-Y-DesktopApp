@@ -12,7 +12,7 @@ INTRO_BG = transform.scale(image.load(join(
 
 #### TEXT IMAGES ####
 INTRO_TEXT = image.load(join("assets", "res", "fonts", "title_effect2.png"))
-PRESS_ANY_KEY = transform.scale(image.load(join("assets", "res", "fonts", "press_key_b.png")), (200, 20))
+PRESS_ANY_KEY = transform.scale(image.load(join("assets", "res", "fonts", "press_key_w.png")), (200, 20))
 
 #### SOUND EFFECTS ####
 

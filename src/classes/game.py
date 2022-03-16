@@ -16,11 +16,11 @@ class Game:
     def __init__(self, clock) -> None:
         self.clock = clock
         self.user_info["username"] = self._getUserName()
-        self._requestUserInfo()
-        # TODO PARSE USER INFO
-        self._requestHeroes()
-
-        # TODO GET HEROES
+        if self.user_info["username"]:
+            self._requestUserInfo()
+            # TODO PARSE USER INFO
+            self._requestHeroes()
+            # TODO GET HEROES
 
     def changeActivity(self, activity: str = "main") -> None:
         self.active_window = activity
@@ -34,7 +34,7 @@ class Game:
                 print("User Name loaded from cache: " + result)
                 del json_file, f
         except Exception as e:
-            print("Username cannot be loaded from cache.\n"+e )
+            print("Username cannot be loaded from cache.\n"+str(e) )
             # TODO GET USERNAME
         return result
 

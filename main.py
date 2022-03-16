@@ -18,13 +18,21 @@ if "__main__" == __name__:
             if event.type == pygame.QUIT:
                 game.running_state = False
                 pygame.quit()
-        
+
+
         if game.active_window == "main":
-            pass
+            print("main")
+            drawer.draw_main()
         elif game.active_window == "welcome":
             drawer.draw_welcome(WIN, pygame.time.get_ticks())
             for event in events:
                 if event.type == pygame.KEYDOWN:
-                    pass
+                    if game.user_info["username"]:
+                        game.changeActivity("main")
+                    else:
+                        game.changeActivity("login")
+        elif game.active_window == "login":
+            print("login")
+            drawer.draw_login()
         
         pygame.display.update()
