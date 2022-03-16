@@ -13,7 +13,8 @@ if "__main__" == __name__:
     drawer = Drawer()
     while game.running_state:
         game.clock.tick(FPS)
-        for event in pygame.event.get():
+        events = pygame.event.get()
+        for event in events:
             if event.type == pygame.QUIT:
                 game.running_state = False
                 pygame.quit()
@@ -21,6 +22,9 @@ if "__main__" == __name__:
         if game.active_window == "main":
             pass
         elif game.active_window == "welcome":
-            drawer.draw_welcome(WIN)
+            drawer.draw_welcome(WIN, pygame.time.get_ticks())
+            for event in events:
+                if event.type == pygame.KEYDOWN:
+                    pass
         
         pygame.display.update()
