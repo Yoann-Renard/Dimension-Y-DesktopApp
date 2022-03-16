@@ -2,7 +2,7 @@ import os
 import requests
 import json
 
-from settings import GET_HEROES_FROM_USER_ENDPOINT, HEROES_SERVICE_PORT, HOST
+from settings import GET_HEROES_FROM_USER_ENDPOINT, HEROES_SERVICE_ENDPOINT, HOST
 
 class Game:
     running_state = True
@@ -42,7 +42,7 @@ class Game:
         pass  # TODO
     
     def _requestHeroes(self) -> None:
-        result = requests.get(url=HOST+HEROES_SERVICE_PORT+self.user_info["username"]+GET_HEROES_FROM_USER_ENDPOINT, timeout=5)
+        result = requests.get(url=HOST+HEROES_SERVICE_ENDPOINT+self.user_info["username"]+GET_HEROES_FROM_USER_ENDPOINT, timeout=5)
         list = json.loads(result.text)["heroes"]
         print("HEROES REQUEST RESPONSE: "+ str(result.status_code) + "\nRESULT LENGTH: "+str(len(list)))
         self.heroes = list
