@@ -4,10 +4,10 @@ class EventHandler:
         for event in events:
             if event.type == key:
                 if game.user_info["username"]:
-                    game.changeActivity("main")
+                    game.change_activity("main")
                 else:
-                    game.changeActivity("login")
-    
+                    game.change_activity("login")
+
     def login_event_handler(self, events, drawer, key):
         for event in events:
             if event.type == key:

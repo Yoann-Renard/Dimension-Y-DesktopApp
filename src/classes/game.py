@@ -4,6 +4,7 @@ import json
 
 from settings import GET_HEROES_FROM_USER_ENDPOINT, HEROES_SERVICE_ENDPOINT, HOST
 
+
 class Game:
     running_state = True
     clock = None
@@ -15,40 +16,41 @@ class Game:
 
     def __init__(self, clock) -> None:
         self.clock = clock
-        self.user_info["username"] = self._getUserName()
+        self.user_info["username"] = self._get_user_name()
         if self.user_info["username"]:
-            self._requestUserInfo()
+            self._request_user_info()
             # TODO PARSE USER INFO
-            self._requestHeroes()
+            self._request_heroes()
             # TODO GET HEROES
 
-    def changeActivity(self, activity: str = "main") -> None:
+    def change_activity(self, activity: str = "main") -> None:
         self.active_window = activity
 
-    def _getUserName(self) -> str:
+    def _get_user_name(self) -> str:
         result: str = ""
         try:
-            with open(os.path.join("cache", "user_cache.json"),"r") as f:
+            with open(os.path.join("cache", "user_cache.json"), "r") as f:
                 json_file = json.load(f)
                 result = json_file["username"]
                 print("User Name loaded from cache: " + result)
                 del json_file, f
         except Exception as e:
-            print("Username cannot be loaded from cache.\n"+str(e) )
+            print("Username cannot be loaded from cache.\n" + str(e))
             # TODO GET USERNAME
         return result
 
-    def _requestUserInfo(self) -> None:
+    def _request_user_info(self) -> None:
         pass  # TODO
-    
-    def _requestHeroes(self) -> None:
-        result = requests.get(url=HOST+HEROES_SERVICE_ENDPOINT+self.user_info["username"]+GET_HEROES_FROM_USER_ENDPOINT, timeout=5)
-        list = json.loads(result.text)["heroes"]
-        print("HEROES REQUEST RESPONSE: "+ str(result.status_code) + "\nRESULT LENGTH: "+str(len(list)))
-        self.heroes = list
 
-    def _saveHeroesImagesInCache(self) -> None:
+    def _request_heroes(self) -> None:
+        result = requests.get(
+            url=HOST + HEROES_SERVICE_ENDPOINT + self.user_info["username"] + GET_HEROES_FROM_USER_ENDPOINT, timeout=5)
+        rlist = json.loads(result.text)["heroes"]
+        print("HEROES REQUEST RESPONSE: " + str(result.status_code) + "\nRESULT LENGTH: " + str(len(rlist)))
+        self.heroes = rlist
+
+    def _save_heroes_images_in_cache(self) -> None:
         pass
 
-    def _saveUserInfoInCache(self) -> None:
+    def _save_user_info_in_cache(self) -> None:
         pass
