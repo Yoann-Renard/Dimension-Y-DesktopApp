@@ -3,7 +3,7 @@ class EventHandler:
     def welcome_event_handler(self, events, game, key):
         for event in events:
             if event.type == key:
-                if game.user_info["username"]:
+                if game.user_data["username"]:
                     game.change_activity("main")
                 else:
                     game.change_activity("login")
