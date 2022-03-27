@@ -20,7 +20,7 @@ class Game:
 
     def __init__(self, clock) -> None:
         self.clock = clock
-        self.user_data["username"] = self._get_user_name()
+        self.user_data["username"] = self._get_user_name_from_cache()
         if self.user_data["username"]:
             self._request_user_info()
             # TODO PARSE USER INFO
@@ -30,7 +30,7 @@ class Game:
     def change_activity(self, activity: str = "main") -> None:
         self.active_window = activity
 
-    def _get_user_name(self) -> str:
+    def _get_user_name_from_cache(self) -> str:
         result: str = ""
         try:
             with open(os.path.join("cache", "user_data.json"), "r") as f:
@@ -71,5 +71,5 @@ class Game:
         print(str(count)+' new sprites have been stored in cache.')
 
     def _save_user_info_in_cache(self) -> None: # FIXME
-        with open(os.path.join("cache", "user_data.json")) as f:
+        with open(os.path.join("cache", "user_data.json"), 'w') as f:
             f.write(json.dumps(self.user_data))
